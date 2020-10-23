@@ -37,6 +37,7 @@ var v = new Vue({
                             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     buttons: [{
 
+
                             text: '<li class="fa fa-user-plus"></li> Nuevo Cliente',
                             titleAttr: 'Crear nuevo Cliente',
                             className: 'btn btn-primary mb-2',
