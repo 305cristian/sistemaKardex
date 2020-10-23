@@ -57,7 +57,7 @@
                                 <label>Ingre el Nombre</label>                              
                                 <input class="form-control" :class="{'is-invalid': formValidacion.nombre}" type="text" name="txtNombre"                                                                         
                                        v-model="nuevoCliente.nombre"> 
-                                    
+
                             </div>
                             <br>
                             <div class="row">
@@ -75,13 +75,24 @@
 
                             <div class="row">
                                 <!--<div class="btn-group"data-toggle="buttons">-->
-                                <label class="btn btn-info btn-sm" for="idActivo">  
-                                    <input id="idActivo" type="radio" name="estado"  v-model="nuevoCliente.estado" value="Activo" checked>
-                                    Activo</label>
+                                <!--                                <label class="btn btn-info btn-sm" for="idActivo">  
+                                                                    <input id="idActivo" type="radio" name="estado"  v-model="nuevoCliente.estado" value="Activo" checked>
+                                                                    Activo</label>
+                                
+                                                                <label class="btn btn-dark btn-sm" for="idInactivo">
+                                                                    <input id="idInactivo" class="" type="radio"  name="estado" v-model="nuevoCliente.estado" value="Inactivo" >
+                                                                    Inactivo</label>-->
 
-                                <label class="btn btn-dark btn-sm" for="idInactivo">
-                                    <input id="idInactivo" class="" type="radio"  name="estado" v-model="nuevoCliente.estado" value="Inactivo" >
-                                    Inactivo</label>
+                                <div class="form-group">
+                                    <label for="">Estado</label><br>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-dark " :class="{'active':(nuevoCliente.estado == 'Activo')}" 
+                                                @click="pickGender('Activo')"> Activo</button>
+                                        <button type="button" class="btn btn-outline-dark " :class="{'active': (nuevoCliente.estado == 'Inactivo')}" 
+                                                @click="pickGender('Inactivo')"> Inactivo</button>
+                                    </div>
+                                    <!--<div  class="text-danger"v-html="formValidacion.estado"></div>-->
+                                </div>
 
 
                             </div>
@@ -137,7 +148,7 @@
                             <br>
                             <div class="row">
                                 <!--<div class="btn-group"data-toggle="buttons">-->
-                                <label class="btn btn-info btn-sm" for="idActivo2">  
+<!--                                <label class="btn btn-info btn-sm" for="idActivo2">  
                                     <input id="idActivo2" type="radio" name="estado" v-model="actualizarCliente.cli_estado" value="Activo" checked>
                                     Activo</label>
 
@@ -145,10 +156,19 @@
                                     <input id="idInactivo2" class="" type="radio" name="estado" v-model="actualizarCliente.cli_estado" value="Inactivo" >
                                     Inactivo</label>
 
-                                <!--</div>-->
-                                <span>{{nuevoCliente.estado}}</span>
+                                </div>
+                                <span>{{nuevoCliente.estado}}</span>-->
 
-
+                                <div class="form-group">
+                                    <label for="">Estado</label><br>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-dark " :class="{'active':(actualizarCliente.cli_estado == 'Activo')}" 
+                                                @click="changeGender('Activo')"> Activo</button>
+                                        <button type="button" class="btn btn-outline-dark " :class="{'active': (actualizarCliente.cli_estado == 'Inactivo')}" 
+                                                @click="changeGender('Inactivo')"> Inactivo</button>
+                                    </div>
+                                    <!--<div  class="text-danger"v-html="formValidacion.estado"></div>-->
+                                </div>
 
                             </div>
 

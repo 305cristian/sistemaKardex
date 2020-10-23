@@ -37,7 +37,6 @@ var v = new Vue({
                             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     buttons: [{
 
-
                             text: '<li class="fa fa-user-plus"></li> Nuevo Cliente',
                             titleAttr: 'Crear nuevo Cliente',
                             className: 'btn btn-primary mb-2',
@@ -176,6 +175,12 @@ var v = new Vue({
             };
             v.formValidacion = false;
             v.cargarClientes();
+        },
+        pickGender(estado) {
+            return v.nuevoCliente.estado = estado; // agregar nuevo usuario con la selección de género
+        },
+         changeGender(estado){
+             return v.actualizarCliente.estado = estado; // actualizar el género
         },
         noResult() {
             v.sinResultado = true;
