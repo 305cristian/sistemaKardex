@@ -5,7 +5,7 @@
 
     <!--<button @click='modalAgregar=true' type="button" class="btn btn-outline-primary" data-toggle="modal"
         data-target="#modalClientes" >NuevoCliente</button>-->
-    <button  type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalClientes" >NuevoCliente</button>
+    <!--<button  type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalClientes" >NuevoCliente</button>-->
 
     <div class="containeridTblClientes-fluid my-3">
         <table id="idTblClientes"  class="table table-striped dysplay nowrap" dellspacing="0" style="width: 100%" >
@@ -15,21 +15,30 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Cedula</th>
+                    <th>Genero</th>
                     <th>Estado</th>
                     <th width='20'>Acciones</th>                                                
                 </tr>
             </thead>
             <tbody>
-                <tr  v-for="(clie ,index) of clientes">
+                <tr  v-for="clie of clientes">
                     <td>{{clie.id}}</td>
                     <td>{{clie.cli_nombre}}</td>
                     <td>{{clie.cli_apellido}}</td>
                     <td>{{clie.cli_cedula}}</td>                                 
-                    <td>{{clie.cli_estado}}</td>                                 
+                    <td>{{clie.cli_genero}}</td>                                 
+                    <td><span v-if="(clie.cli_estado == 'Activo')">
+                            <div class="bg-success text-white text-center">Activo</div>   
+                        </span>
+                        <span v-else>                        
+                            <div class="bg-danger text-white text-center">Inactivo</div> 
+                        </span></td> 
+
                     <td >
-                        <a href="#" class="btn btn-warning btn-sm item-edit" @click="obtenerCliente(clie)" data-toggle="modal" data-target="#modalClientesAct"><li class="fa fa-edit"></li></a>
-                        <a href="#" class="btn btn-danger btn-sm item-delete" @click="eliminarCliente(clie)" ><li class="fa fa-trash-alt"></li></a>
-                    </td>              
+                        <a href="#" class="btn btn-warning btn-sm " @click="obtenerCliente(clie)" data-toggle="modal" data-target="#modalClientesAct"><li class="fa fa-edit"></li></a>
+                        <a href="#" class="btn btn-danger btn-sm "  @click="eliminarCliente(clie)" ><li class="fa fa-trash-alt"></li></a>
+                    </td>   
+                
 
                 </tr>
                 <tr v-if="sinResultado">
@@ -57,7 +66,6 @@
                                 <label>Ingre el Nombre</label>                              
                                 <input class="form-control" :class="{'is-invalid': formValidacion.nombre}" type="text" name="txtNombre"                                                                         
                                        v-model="nuevoCliente.nombre"> 
-
                             </div>
                             <br>
                             <div class="row">
@@ -72,32 +80,28 @@
                                        v-model='nuevoCliente.cedula'>
                             </div>
                             <br>
-
                             <div class="row">
-                                <!--<div class="btn-group"data-toggle="buttons">-->
-                                <!--                                <label class="btn btn-info btn-sm" for="idActivo">  
-                                                                    <input id="idActivo" type="radio" name="estado"  v-model="nuevoCliente.estado" value="Activo" checked>
-                                                                    Activo</label>
-                                
-                                                                <label class="btn btn-dark btn-sm" for="idInactivo">
-                                                                    <input id="idInactivo" class="" type="radio"  name="estado" v-model="nuevoCliente.estado" value="Inactivo" >
-                                                                    Inactivo</label>-->
+                                <label>Selecione el genero</label>
+                                <select id="idGenero" class="form-control" v-model='nuevoCliente.genero'>
+                                    <option>Masculino</option>
+                                    <option>Femenino</option>                               
+                                </select>
+                            </div>  
 
+                            <br>
+                            <div class="row">                            
                                 <div class="form-group">
                                     <label for="">Estado</label><br>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-outline-dark " :class="{'active':(nuevoCliente.estado == 'Activo')}" 
-                                                @click="pickGender('Activo')"> Activo</button>
+                                                @click="pincharEstado('Activo')"> Activo</button>
+
                                         <button type="button" class="btn btn-outline-dark " :class="{'active': (nuevoCliente.estado == 'Inactivo')}" 
-                                                @click="pickGender('Inactivo')"> Inactivo</button>
+                                                @click="pincharEstado('Inactivo')"> Inactivo</button>
                                     </div>
-                                    <!--<div  class="text-danger"v-html="formValidacion.estado"></div>-->
+                                    <div  class="text-danger"v-html="formValidacion.estado"></div>
                                 </div>
-
-
                             </div>
-
-
                         </form>
                         <div class="modal-footer">
                             <button type="button" id="idInsertar" class="btn btn-primary"
@@ -147,27 +151,24 @@
                             </div>
                             <br>
                             <div class="row">
-                                <!--<div class="btn-group"data-toggle="buttons">-->
-<!--                                <label class="btn btn-info btn-sm" for="idActivo2">  
-                                    <input id="idActivo2" type="radio" name="estado" v-model="actualizarCliente.cli_estado" value="Activo" checked>
-                                    Activo</label>
-
-                                <label class="btn btn-dark btn-sm" for="idInactivo2">
-                                    <input id="idInactivo2" class="" type="radio" name="estado" v-model="actualizarCliente.cli_estado" value="Inactivo" >
-                                    Inactivo</label>
-
-                                </div>
-                                <span>{{nuevoCliente.estado}}</span>-->
-
+                                <label>Selecione el genero</label>
+                                <select id="idGenero" class="form-control" v-model='actualizarCliente.cli_genero'>
+                                    <option>Masculino</option>
+                                    <option>Femenino</option>                               
+                                </select>
+                            </div>  
+                            <br>
+                            <div class="row">
                                 <div class="form-group">
                                     <label for="">Estado</label><br>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-outline-dark " :class="{'active':(actualizarCliente.cli_estado == 'Activo')}" 
-                                                @click="changeGender('Activo')"> Activo</button>
+                                                @click="changeEstado('Activo')"> Activo</button>
+
                                         <button type="button" class="btn btn-outline-dark " :class="{'active': (actualizarCliente.cli_estado == 'Inactivo')}" 
-                                                @click="changeGender('Inactivo')"> Inactivo</button>
+                                                @click="changeEstado('Inactivo')"> Inactivo</button>
                                     </div>
-                                    <!--<div  class="text-danger"v-html="formValidacion.estado"></div>-->
+                                    <div  class="text-danger"v-html="formValidacion.estado"></div>
                                 </div>
 
                             </div>

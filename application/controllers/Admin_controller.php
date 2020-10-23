@@ -466,8 +466,12 @@ class Admin_controller extends CI_Controller {
                 'field' => 'cedula',
                 'label' => 'Cedula',
                 'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'estado',
+                'label' => 'Estado',
+                'rules' => 'trim|required'
             )
-           
         );
 
         $this->form_validation->set_rules($validar);
@@ -477,7 +481,8 @@ class Admin_controller extends CI_Controller {
                 'nombre' => form_error('nombre'),
                 'apellido' => form_error('apellido'),
                 'cedula' => form_error('cedula'),
-                
+                'genero' => form_error('genero'),
+                'estado' => form_error('estado'),
             );
         } else {
 
@@ -485,6 +490,7 @@ class Admin_controller extends CI_Controller {
                 "cli_nombre" => $this->input->post('nombre'),
                 "cli_apellido" => $this->input->post('apellido'),
                 "cli_cedula" => $this->input->post('cedula'),
+                "cli_genero" => $this->input->post('genero'),
                 "cli_estado" => $this->input->post('estado')
             );
 
@@ -514,8 +520,12 @@ class Admin_controller extends CI_Controller {
                 'field' => 'cli_cedula',
                 'label' => 'Cedula',
                 'rules' => 'trim|required'
+            ),
+            array(
+                'field' => 'cli_estado',
+                'label' => 'Estado',
+                'rules' => 'trim|required'
             )
-           
         );
 
         $this->form_validation->set_rules($validar);
@@ -525,7 +535,7 @@ class Admin_controller extends CI_Controller {
                 'nombre' => form_error('cli_nombre'),
                 'apellido' => form_error('cli_apellido'),
                 'cedula' => form_error('cli_cedula'),
-               
+                'estado' => form_error('cli_estado'),
             );
         } else {
 
@@ -534,6 +544,7 @@ class Admin_controller extends CI_Controller {
                 "cli_nombre" => $this->input->post('cli_nombre'),
                 "cli_apellido" => $this->input->post('cli_apellido'),
                 "cli_cedula" => $this->input->post('cli_cedula'),
+                "cli_genero" => $this->input->post('cli_genero'),
                 "cli_estado" => $this->input->post('cli_estado')
             );
 

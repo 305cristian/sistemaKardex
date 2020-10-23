@@ -11,6 +11,7 @@ var v = new Vue({
             nombre: '',
             apellido: '',
             cedula: '',
+            genero: '',
             estado: ''
         },
         actualizarCliente: {},
@@ -176,11 +177,11 @@ var v = new Vue({
             v.formValidacion = false;
             v.cargarClientes();
         },
-        pickGender(estado) {
-            return v.nuevoCliente.estado = estado; // agregar nuevo usuario con la selección de género
+        pincharEstado(estado) {
+            return v.nuevoCliente.estado = estado; // agregar nuevo usuario con la selección de estado
         },
-         changeGender(estado){
-             return v.actualizarCliente.estado = estado; // actualizar el género
+         changeEstado(estado){
+             return v.actualizarCliente.cli_estado = estado; // actualizar el género           
         },
         noResult() {
             v.sinResultado = true;
