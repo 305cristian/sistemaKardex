@@ -146,7 +146,7 @@
             success: function (response, textStatus, jqXHR) {
                 if (response) {
                     var msg = "";
-                    $('#idTblProveedores').DataTable().destroy();
+//                    $('#idTblProveedores').DataTable().destroy();
                     cargarProveedores()
                     $('#modalProveedores').modal('hide');
                     $('.modal-backdrop').remove();
@@ -222,6 +222,7 @@
               
                 $('#idTblProveedores').DataTable({
                     responsive: true,
+                    destroy:true,
 //                    scrollX: true,
                     data: data,
                     columns: [

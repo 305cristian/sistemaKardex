@@ -446,7 +446,7 @@ class Admin_controller extends CI_Controller {
     //METODOS DEL MODULO CLIENTES
 
     public function mostrarClientes() {
-        $resultado['clientes'] = $this->Admin_model->mostrarClientes();
+        $resultado = $this->Admin_model->mostrarClientes();
         echo json_encode($resultado);
     }
 

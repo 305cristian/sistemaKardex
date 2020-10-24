@@ -1,4 +1,5 @@
 
+<script src="assets/bootstrap/js/jquery-3.5.1.min.js"></script>
 
 <!-- encargados de levantar los models y algo mas-->
 <script src="assets/bootstrap/js/popper.min.js"></script>
@@ -30,9 +31,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <!-- para VueJS-->
-<script src="assets/script/librerias/vue.min.js"></script>
 <script src="assets/script/librerias/axios.min.js"></script>
-<!-- <script src="assets/script/librerias/jquery.min.js"></script>-->
+<script src="assets/script/librerias/vue.min.js"></script>
 <script src="assets/script/vue_Cliente.js"></script>
 
 

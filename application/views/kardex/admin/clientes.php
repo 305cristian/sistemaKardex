@@ -27,18 +27,16 @@
                     <td>{{clie.cli_apellido}}</td>
                     <td>{{clie.cli_cedula}}</td>                                 
                     <td>{{clie.cli_genero}}</td>                                 
-                    <td><span v-if="(clie.cli_estado == 'Activo')">
-                            <div class="bg-success text-white text-center">Activo</div>   
-                        </span>
-                        <span v-else>                        
-                            <div class="bg-danger text-white text-center">Inactivo</div> 
-                        </span></td> 
+                    <td>
+                        <span v-if="(clie.cli_estado == 'Activo')"><div class="bg-success text-white text-center">Activo</div></span>                                                  
+                        <span v-else> <div class="bg-danger text-white text-center">Inactivo</div> </span>                                                                  
+                    </td> 
 
                     <td >
                         <a href="#" class="btn btn-warning btn-sm " @click="obtenerCliente(clie)" data-toggle="modal" data-target="#modalClientesAct"><li class="fa fa-edit"></li></a>
                         <a href="#" class="btn btn-danger btn-sm "  @click="eliminarCliente(clie)" ><li class="fa fa-trash-alt"></li></a>
                     </td>   
-                
+
 
                 </tr>
                 <tr v-if="sinResultado">
@@ -96,7 +94,7 @@
                                         <button type="button" class="btn btn-outline-dark " :class="{'active':(nuevoCliente.estado == 'Activo')}" 
                                                 @click="pincharEstado('Activo')"> Activo</button>
 
-                                        <button type="button" class="btn btn-outline-dark " :class="{'active': (nuevoCliente.estado == 'Inactivo')}" 
+                                        <button type="button" class="btn btn-outline-danger " :class="{'active': (nuevoCliente.estado == 'Inactivo')}" 
                                                 @click="pincharEstado('Inactivo')"> Inactivo</button>
                                     </div>
                                     <div  class="text-danger"v-html="formValidacion.estado"></div>

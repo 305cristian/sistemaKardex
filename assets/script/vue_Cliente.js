@@ -20,18 +20,15 @@ var v = new Vue({
     },
     created() {
         this.cargarClientes();
-
     },
 
     methods: {
-
         tabla() {
-            $('#idTblClientes').DataTable().destroy();
             $(function () {
-                $('#idTblClientes').dataTable({
+                $('#idTblClientes').DataTable({
                     lengthMenu: [[7, 10, 15, -1], [7, 10, 15, "Todo"]],
                     responsive: true,
-//                    destroy: true,
+                    retrieve:true,
                     dom: "<'row'<'col-sm-12 col-md-12'B>>" +
                             "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'f>>" +
                             "<'row'<'col-sm-12'tr>>" +
@@ -72,23 +69,25 @@ var v = new Vue({
 
         },
 
-        cargarClientes() {
-            axios.get(this.url + 'Admin_controller/mostrarClientes').then((response) => {
-                if (response.data.clientes === null) {
+        cargarClientes: function () {
+            axios.get(this.url + 'Admin_controller/mostrarClientes').then(function (response) {
+                if (response.data === null) {
                     v.noResult();
                 } else {
-                    v.clientes = response.data.clientes;
+
+                    v.clientes = response.data;
                     v.tabla();
                 }
             });
         },
-        insertarCliente() {
+        insertarCliente: function () {
             var datos = v.formData(v.nuevoCliente);
-            axios.post(this.url + 'Admin_controller/insertarCliente', datos).then((response) => {
+            axios.post(this.url + 'Admin_controller/insertarCliente', datos).then(function (response) {
                 if (response.data.error) {
                     v.formValidacion = response.data.msg;
                 } else {
                     toastr['success'](v.successMSG = response.data.msg, 'Insertado');
+                    v.cargarClientes();
                     v.refrescarDatos();
                     $('#modalClientes').modal('hide');
                     $('.modal-backdrop').remove();
@@ -96,9 +95,9 @@ var v = new Vue({
                 }
             });
         },
-        actualizarCiente() {
+        actualizarCiente: function () {
             var datos = v.formData(v.actualizarCliente);
-            axios.post(this.url + 'Admin_controller/actualizarCliente', datos).then((response) => {
+            axios.post(this.url + 'Admin_controller/actualizarCliente', datos).then(function (response) {
                 if (response.data.error) {
                     v.formValidacion = response.data.msg;
                 } else {
@@ -109,7 +108,7 @@ var v = new Vue({
                 }
             });
         },
-        eliminarCliente(cliente) {
+        eliminarCliente: function (cliente) {
             swal.fire({
                 title: "¿Estas seguro?",
                 text: "Este paso eliminara definitivamente el Cliente,  siempre que no este asociada a otra tabla, caso contrario dele cancelar",
@@ -123,11 +122,11 @@ var v = new Vue({
 
                 if (result.value) {
                     v.actualizarCliente = cliente;
-                    var datos = v.formData(v.actualizarCliente);
-                    axios.post(this.url + "Admin_controller/eliminarCliente", datos).then((response) => {
+                    var id = v.formData(v.actualizarCliente);
+                    axios.post(this.url + "Admin_controller/eliminarCliente", id).then(function (response) {
                         if (response.data.error) {
                             v.cargarClientes();
-                            v.limpiar();
+                            v.refrescarDatos();
                             swal.fire({
                                 title: 'Eliminado',
                                 text: 'Cliente eliminado exitosamente',
@@ -163,25 +162,24 @@ var v = new Vue({
             return formData;
         },
 
-        obtenerCliente(cliente) {
+        obtenerCliente: function (cliente) {
             v.actualizarCliente = cliente;
         },
 
-        refrescarDatos() {
+        refrescarDatos: function () {
             v.nuevoCliente = {
                 nombre: '',
                 apellido: '',
                 cedula: '',
                 estado: ''
             };
-            v.formValidacion = false;
-            v.cargarClientes();
+
         },
         pincharEstado(estado) {
             return v.nuevoCliente.estado = estado; // agregar nuevo usuario con la selección de estado
         },
-         changeEstado(estado){
-             return v.actualizarCliente.cli_estado = estado; // actualizar el género           
+        changeEstado(estado) {
+            return v.actualizarCliente.cli_estado = estado; // actualizar tarea           
         },
         noResult() {
             v.sinResultado = true;

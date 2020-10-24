@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title >Sistema Kardex</title>
 
-        <script src="assets/bootstrap/js/jquery-3.5.1.min.js"></script>
+        <!--<script src="assets/bootstrap/js/jquery-3.5.1.min.js"></script>-->
 
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="assets/plugins/sidebar/simple-sidebar.css">
