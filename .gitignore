@@ -23,9 +23,11 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 ## Sublime Text cache files
 *.tmlanguage.cache
-*.tmPreferences.cache
+*.tmPreferences.cach
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
 /tests/tests/
 /tests/results/
+
+application/config/.env
