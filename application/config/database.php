@@ -11,7 +11,6 @@ $dotenv->load();//Ejecuto el archivo .env
 
 $active_group = 'default';
 $query_builder = TRUE;
-echo 'pruebassss';
 $db['default'] = array('database' => getenv("DB_NAME"),//Obtengo la variabla "DB_NAME" la cual contiene el nombre de la base de datos
     'username' => getenv("DB_USER"),
     'password' => getenv("DB_PASS"),
