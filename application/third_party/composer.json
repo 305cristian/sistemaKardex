@@ -1,0 +1,7 @@
+{
+    "name": "Sistema Kardex cc/ instalacion de composer",
+    "require": {
+        "vlucas/phpdotenv": "^4.1",
+        "phpmailer/phpmailer": "^6.2"
+    }
+}

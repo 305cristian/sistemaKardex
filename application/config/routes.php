@@ -50,15 +50,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 //$route['default_controller'] = 'cliecontrol';
-$route['default_controller'] = 'Index_controller';
-$route['kardex'] = 'Index_controller';
-$route['producto_controller'] = 'Admin_controller/producto';
-$route['marca_controller'] = 'Admin_controller/marca';
-$route['tipo_controller'] = 'Admin_controller/tipo';
-$route['grupo_controller'] = 'Admin_controller/grupo';
+$route['default_controller'] = 'comun/Index_controller';
+$route['main'] = 'comun/Index_controller';
+//$route['kardex'] = 'Index_controller';
+$route['administracion'] = 'admin/Admin_controller';
+$route['compras'] = 'compras/Comp_controller';
+$route['ventas'] = 'ventas/Vent_controller';
+$route['inventario'] = 'inventario/Inv_controller';
+$route['producto_controller'] = 'admin/Admin_controller/producto';
+$route['marca_controller'] = 'admin/Admin_controller/marca';
+$route['tipo_controller'] = 'admin/Admin_controller/tipo';
+$route['grupo_controller'] = 'admin/Admin_controller/grupo';
 
-$route['prove_controller'] = 'Admin_controller/proveedores';
-$route['clie_controller'] = 'Admin_controller/clientes';
+$route['prove_controller'] = 'admin/Admin_controller/proveedores';
+$route['clie_controller'] = 'admin/Admin_controller/clientes';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

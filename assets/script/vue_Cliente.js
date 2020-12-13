@@ -24,11 +24,14 @@ var v = new Vue({
 
     methods: {
         tabla() {
+//            $('#idTblClientes').dataTable().destroy();
             $(function () {
                 $('#idTblClientes').DataTable({
+
                     lengthMenu: [[7, 10, 15, -1], [7, 10, 15, "Todo"]],
                     responsive: true,
-                    retrieve:true,
+//                    retrieve: true,
+                    destroy: true,
                     dom: "<'row'<'col-sm-12 col-md-12'B>>" +
                             "<'row'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-7'f>>" +
                             "<'row'<'col-sm-12'tr>>" +
@@ -61,7 +64,8 @@ var v = new Vue({
                             titleAttr: 'Imprimir Documento',
                             className: 'btn btn-info btn-sm'
                         }
-                    ]
+                    ],
+                  
 
                 });
 
@@ -70,19 +74,19 @@ var v = new Vue({
         },
 
         cargarClientes: function () {
-            axios.get(this.url + 'Admin_controller/mostrarClientes').then(function (response) {
+            axios.get(this.url + '/admin/Admin_controller/mostrarClientes').then((response) => {
                 if (response.data === null) {
                     v.noResult();
                 } else {
 
                     v.clientes = response.data;
-                    v.tabla();
+                    v.tabla(response.data);
                 }
             });
         },
         insertarCliente: function () {
             var datos = v.formData(v.nuevoCliente);
-            axios.post(this.url + 'Admin_controller/insertarCliente', datos).then(function (response) {
+            axios.post(this.url + '/admin/Admin_controller/insertarCliente', datos).then(function (response) {
                 if (response.data.error) {
                     v.formValidacion = response.data.msg;
                 } else {
@@ -97,7 +101,7 @@ var v = new Vue({
         },
         actualizarCiente: function () {
             var datos = v.formData(v.actualizarCliente);
-            axios.post(this.url + 'Admin_controller/actualizarCliente', datos).then(function (response) {
+            axios.post(this.url + '/admin/Admin_controller/actualizarCliente', datos).then(function (response) {
                 if (response.data.error) {
                     v.formValidacion = response.data.msg;
                 } else {
@@ -123,7 +127,7 @@ var v = new Vue({
                 if (result.value) {
                     v.actualizarCliente = cliente;
                     var id = v.formData(v.actualizarCliente);
-                    axios.post(this.url + "Admin_controller/eliminarCliente", id).then(function (response) {
+                    axios.post(this.url + "/admin/Admin_controller/eliminarCliente", id).then(function (response) {
                         if (response.data.error) {
                             v.cargarClientes();
                             v.refrescarDatos();
