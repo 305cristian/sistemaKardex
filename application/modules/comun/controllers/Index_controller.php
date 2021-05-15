@@ -23,7 +23,7 @@ class Index_controller extends MX_Controller{
 //   
      public function index() {
 
-        $this->load->view('comun/head');
+        $this->load->view('comun/headm');
         $this->load->view('comun/header');
         $this->load->view('admin/index');
         $this->load->view('comun/footer');

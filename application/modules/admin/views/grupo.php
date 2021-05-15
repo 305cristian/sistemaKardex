@@ -128,7 +128,7 @@
                                 </form>
                             </div>
                             <div class="col-md-9">
-                                <table id="idTblSubGrupo" class="table table-striped dysplay nowrap" dellspacing="0" style="width: 100%">
+                                <table id="idTblSubGrupo" class="table table-striped dysplay nowrap" cellspacing="0" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>Id</th>

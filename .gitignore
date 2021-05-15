@@ -9,6 +9,7 @@ application/logs/*
 !application/*/.htaccess
 
 composer.lock
+application/config/.env
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
@@ -30,4 +31,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-application/config/.env
+
